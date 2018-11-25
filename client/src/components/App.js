@@ -4,6 +4,8 @@ import green from '@material-ui/core/colors/green'
 import blue from '@material-ui/core/colors/blue'
 
 import Header from './Header'
+import ContentGridList from './ContentGridList'
+
 
 const theme = createMuiTheme({
     palette: {
@@ -16,6 +18,7 @@ class App extends Component {
         return (
             <MuiThemeProvider theme={theme}>
                 <Header />
+                <ContentGridList />
             </MuiThemeProvider>
         )
     }
