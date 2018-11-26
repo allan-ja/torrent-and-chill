@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import StarRate from '@material-ui/icons/StarRate'
-import { GridList, GridListTile, GridListTileBar } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
+import MovieCard from './MovieCard'
 
 import { fetchMovies } from '../actions'
 
@@ -11,16 +12,17 @@ const styles = theme => ({
     root: {
           display: 'flex',
           flexWrap: 'wrap',
-          justifyContent: 'space-around',
+          justifyContent: 'flex-start',
           overflow: 'hidden',
           backgroundColor: theme.palette.background.paper,
         },
-    gridList: {
-        width: 500,
-        height: 450
+    grid: {
+        padding: theme.spacing.unit
+    },
+    gridTile: {
+
     }
 })
-
 
 class ContentGridList extends Component {
     componentDidMount() {
@@ -31,16 +33,13 @@ class ContentGridList extends Component {
         const { classes } = this.props
         return (
             <div className={classes.root}>
-                <GridList cellHeight={180} className={classes.gridList}>
-                    {this.props.movies.map(tile => (
-                        <GridListTile key={tile._id}>
-                            <img src={tile.images.banner} />
-                            <GridListTileBar
-                                title={tile.title}
-                            />
-                        </GridListTile>
+                <Grid container className={classes.grid}>
+                    {this.props.movies.map(item => (
+                        <Grid item className={classes.grid}>
+                            <MovieCard movie={item} />
+                        </Grid>
                     ))}
-                </GridList>
+                </Grid>
             </div>
         )
     }

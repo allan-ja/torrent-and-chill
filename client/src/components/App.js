@@ -5,6 +5,7 @@ import blue from '@material-ui/core/colors/blue'
 
 import Header from './Header'
 import ContentGridList from './ContentGridList'
+import MovieCard from './MovieCard'
 
 
 const theme = createMuiTheme({
@@ -18,6 +19,7 @@ class App extends Component {
         return (
             <MuiThemeProvider theme={theme}>
                 <Header />
+                {/* <MovieCard /> */}
                 <ContentGridList />
             </MuiThemeProvider>
         )
