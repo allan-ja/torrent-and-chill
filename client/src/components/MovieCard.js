@@ -41,7 +41,7 @@ class MovieCard extends Component {
             </Grid>
             <Grid item xs={6} className={classes.subheader} direction='row'>
               <Grid item >
-                <Typography gutterBottom variant="subheading">
+                <Typography gutterBottom variant="display1">
                   {movie.title}
                 </Typography>
               </Grid>
