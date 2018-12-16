@@ -1,8 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
+import { ButtonBase } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
+import { Link } from 'react-router-dom'
 
 
 function Header(props) {
@@ -10,9 +11,14 @@ function Header(props) {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="title" color="inherit">
-            Torrent & Chill
-          </Typography>
+          <ButtonBase 
+            key='AppButton' 
+            component={Link}
+            to='/'>
+            <Typography variant="title" color="inherit">
+              Torrent & Chill
+            </Typography>
+          </ButtonBase>
         </Toolbar>
       </AppBar>
     </div>

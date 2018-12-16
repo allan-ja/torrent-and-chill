@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import { Button, Typography } from '@material-ui/core';
+
+import { getMovie } from '../actions'
 
 const styles = theme => ({
     button: {
@@ -9,28 +12,40 @@ const styles = theme => ({
 })
 
 class MoviePage extends Component {
+    componentDidMount() {
+        this.props.getMovie(this.props.match.params.id)
+        console.log(this.props.match.params.id)
+    }
 
     render(){
-        const { classes, movie } = this.props
+        const { classes, movies } = this.props
+        const movie = movies[0]
         return (
             <div> 
                 <Typography variant='display2'>
-                {movie.title}
+                    {movie.title}
                 </Typography>
                 <Typography variant='body1'>
                     {movie.synopsis}
                 </Typography>
                 <Button variant='contained' color='primary' className={classes.button} >
-                Download on client
+                    Download on client
                 </Button>
                 <Button variant='outlined' color='primary' className={classes.button}>
-                Download on server
+                    Download on server
                 </Button>
-
             </div>
             
         )
     }
 }
 
-export default withStyles(styles)(MoviePage)
+function mapStateToProps({ movies }) {
+    return { movies }
+}
+
+export default connect(
+    mapStateToProps, { getMovie })(
+        withStyles(styles)(MoviePage)
+    )
+ 

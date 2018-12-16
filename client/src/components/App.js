@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import green from '@material-ui/core/colors/green'
 import blue from '@material-ui/core/colors/blue'
@@ -21,12 +22,18 @@ const theme = createMuiTheme({
 class App extends Component {
     render() {
         return (
-            <MuiThemeProvider theme={theme}>
-                <Header />
-                {/* <MovieCard movie={movie} /> */}
-                <MoviePage movie={movie} />
-                {/* <ContentGridList /> */}
-            </MuiThemeProvider>
+            <Router>           
+                <MuiThemeProvider theme={theme}>
+                    <Header />
+                    <Route exact path="/" component={ContentGridList} />
+                    <Route 
+                        path="/:id" 
+                        component={MoviePage}
+                    />
+                    {/* <MovieCard movie={movie} /> */}
+                    {/* <MoviePage movie={movie} /> */}
+                </MuiThemeProvider>
+            </Router>
         )
     }
 }

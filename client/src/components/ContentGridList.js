@@ -30,11 +30,11 @@ class ContentGridList extends Component {
     }
 
     render() {
-        const { classes } = this.props
+        const { classes, movies } = this.props
         return (
             <div className={classes.root}>
                 <Grid container className={classes.grid}>
-                    {this.props.movies.map(item => (
+                    {movies.map(item => (
                         <Grid item className={classes.grid}>
                             <MovieCard movie={item} />
                         </Grid>
