@@ -10,6 +10,7 @@ function validateEmail(email) {
 
 const userSchema = new Schema({
     email: { type: String, required: true, index: { unique: true } },
+    username: String,
     password: { type: String, required: true }
 })
 
