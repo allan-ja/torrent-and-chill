@@ -24,12 +24,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.get('/', (req, res) => {
-    res.send('HEEERE')
-})
-
 require('./routes/authRoutes')(app)
 require('./routes/downloadRoutes')(app);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
