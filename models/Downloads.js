@@ -4,9 +4,10 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 
 const downloadSchema = new Schema({
-    movie: {type: String},
-    onCLient: {type: Boolean}
-})
+    movie: ObjectId,
+    onClient: Boolean,
+    user: String
+}, {timestamps: true})
 
 const Download = mongoose.model('downloads', downloadSchema)
 
