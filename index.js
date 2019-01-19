@@ -24,6 +24,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get('/', (req, res) => {
+    res.send('YNTC: You Need To Chill')
+})
 
 require('./routes/authRoutes')(app)
 require('./routes/downloadRoutes')(app);
