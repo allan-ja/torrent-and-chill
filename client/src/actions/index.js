@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FETCH_MOVIES, GET_MOVIE } from './types'
+import { ADD_DOWNLOAD, FETCH_MOVIES, GET_MOVIE } from './types'
 
 export const fetchMovies = () => async dispatch => {
   const url = 'https://tv-v2.api-fetch.website/movies/1?sort=trending&order=-1&genre=all'  
@@ -8,7 +8,6 @@ export const fetchMovies = () => async dispatch => {
   console.log(movies)
   dispatch({ type: FETCH_MOVIES, payload: movies})
 }
-
 
 export const getMovie = (id) => async dispatch => {
   const url = 'https://tv-v2.api-fetch.website/movie/'
@@ -19,4 +18,10 @@ export const getMovie = (id) => async dispatch => {
   // const movie = {...res.data }
 
   dispatch({ type: GET_MOVIE, payload: [movie]})
+}
+
+export const addDownload = (movie, onClient) => async dispatch => {
+  const res = await axios.post('/api/new_download', {movie, onClient})
+
+  dispatch({ type: ADD_DOWNLOAD, payload: 'added to download'})
 }

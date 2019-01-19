@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import { Button, Typography } from '@material-ui/core';
 
-import { getMovie } from '../actions'
+import { addDownload, getMovie } from '../actions'
 
 const styles = theme => ({
     button: {
@@ -14,7 +14,15 @@ const styles = theme => ({
 class MoviePage extends Component {
     componentDidMount() {
         this.props.getMovie(this.props.match.params.id)
-        console.log(this.props.match.params.id)
+        console.log('WASSSSUUUPPP')
+    }
+
+    onClientClick = () => {
+        this.props.addDownload(this.props.movies[0].title, true)
+    }
+
+    onServerClick = () => {
+        this.props.addDownload(this.props.movies[0].title, false)
     }
 
     render(){
@@ -28,10 +36,19 @@ class MoviePage extends Component {
                 <Typography variant='body1'>
                     {movie.synopsis}
                 </Typography>
-                <Button variant='contained' color='primary' className={classes.button} >
+                <Button 
+                    variant='contained'
+                    color='primary'
+                    className={ classes.button }
+                    onClick={ this.onClientClick }
+                >
                     Download on client
                 </Button>
-                <Button variant='outlined' color='primary' className={classes.button}>
+                <Button 
+                    variant='outlined'
+                    color='primary'
+                    className={ classes.button }
+                    onClick={ this.onServerClick }>
                     Download on server
                 </Button>
             </div>
@@ -45,7 +62,6 @@ function mapStateToProps({ movies }) {
 }
 
 export default connect(
-    mapStateToProps, { getMovie })(
+    mapStateToProps, { addDownload, getMovie })(
         withStyles(styles)(MoviePage)
     )
- 
